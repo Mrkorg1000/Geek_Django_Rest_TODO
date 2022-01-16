@@ -10,6 +10,8 @@ class Project(models.Model):
     repo_link = models.URLField()
     users = models.ManyToManyField(User)
 
+    def __str__(self):
+        return self.name
 
 
 
