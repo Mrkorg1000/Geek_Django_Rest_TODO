@@ -9,9 +9,5 @@ class ToDoSerializer(serializers.ModelSerializer):
         fields = ['id', 'project', 'user', 'text', 'status', 'created_at', 'updated_at']
 
 
-class DeleteToDoItem(serializers.ModelSerializer):
-    class Meta:
-        model = ToDo
-        fields = ['status']
 
 
