@@ -13,7 +13,7 @@ class ToDoViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['project__name', 'status']
+    filterset_fields = ['project', 'status']
 
     def destroy(self, request, *args, **kwargs):
         todo_obj = self.get_object()
