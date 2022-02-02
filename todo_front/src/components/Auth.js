@@ -4,7 +4,7 @@ import React from 'react'
 class LoginForm extends React.Component {
     constructor(props) {
       super(props)
-      this.state = {login: '', password: ''}
+      this.state = {username: '', password: ''}
     }
 
     handleChange(event)
@@ -17,14 +17,15 @@ class LoginForm extends React.Component {
     }
 
     handleSubmit(event) {
-      console.log(this.state.login + ' ' + this.state.password)
+      console.log(this.state.username + ' ' + this.state.password)
+      this.props.get_token(this.state.username, this.state.password)
       event.preventDefault()
     }
 
     render() {
       return (
         <form onSubmit={(event)=> this.handleSubmit(event)}>
-            <input type="text" name="login" placeholder="login" value={this.state.login} onChange={(event)=>this.handleChange(event)} />
+            <input type="text" name="username" placeholder="username" value={this.state.username} onChange={(event)=>this.handleChange(event)} />
             <input type="password" name="password" placeholder="password" value={this.state.password} onChange={(event)=>this.handleChange(event)} />
             <input type="submit" value="Login" />
         </form>
