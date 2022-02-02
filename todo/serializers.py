@@ -3,6 +3,7 @@ from .models import ToDo
 
 
 class ToDoSerializer(serializers.ModelSerializer):
+    user = serializers.CharField()
 
     class Meta:
         model = ToDo

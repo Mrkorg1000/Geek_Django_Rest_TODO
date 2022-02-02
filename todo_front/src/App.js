@@ -53,7 +53,7 @@ class App extends React.Component {
     axios.post('http://127.0.0.1:8000/api-token-auth/', {username: username, password: password})
     .then(response => {
         this.set_token(response.data['token'])
-    }).catch(error => alert('Неверный логин или пароль'))
+    }).catch(error => alert('РќРµРІРµСЂРЅС‹Р№ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ'))
   }
 
   get_headers() {
@@ -73,13 +73,13 @@ class App extends React.Component {
     const headers = this.get_headers()
     axios.get('http://127.0.0.1:8000/api/users/', {headers})
         .then(response => {
-            this.setState({users: response.data})
+            this.setState({users: response.data.results})
         }).catch(error => console.log(error))
 
 
     axios.get('http://127.0.0.1:8000/api/projects/', {headers})
         .then(response => {
-            this.setState({projects: response.data})
+            this.setState({projects: response.data.results})
         }).catch(error => {
           console.log(error)
           this.setState({projects: []})
@@ -87,7 +87,7 @@ class App extends React.Component {
 
      axios.get('http://127.0.0.1:8000/api/todo/', {headers})
         .then(response => {
-            this.setState({todo: response.data})
+            this.setState({todo: response.data.results})
         }).catch(error => {
           console.log(error)
           this.setState({todo: []})
