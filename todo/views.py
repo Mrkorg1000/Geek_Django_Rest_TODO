@@ -2,7 +2,7 @@ from django_filters import filterset
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework import status
+from rest_framework import status, permissions
 from .models import ToDo
 from .serializers import ToDoSerializer
 
@@ -12,6 +12,7 @@ from .serializers import ToDoSerializer
 class ToDoViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
+    permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['project', 'status']
 
