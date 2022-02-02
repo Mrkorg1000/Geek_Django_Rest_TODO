@@ -7,7 +7,7 @@ from .serializers import UserSerializer
 
 # Create your views here.
 
-class UserViewSet(ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
+class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
