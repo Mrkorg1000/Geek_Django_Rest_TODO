@@ -1,6 +1,8 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
+
+import users
 from .models import Project
 from .pagination import DefaultPagination
 from .serializers import ProjectSerializer
