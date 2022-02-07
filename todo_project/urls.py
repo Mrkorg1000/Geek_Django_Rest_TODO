@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework import permissions
 
+from graphene_django.views import GraphQLView
+
 from rest_framework.routers import DefaultRouter
 
 import users
@@ -44,7 +46,7 @@ schema_view = get_schema_view(
 
 router = DefaultRouter()
 
-# router.register('users', UserViewSet)
+router.register('users', UserViewSet)
 router.register('projects', ProjectViewSet)
 router.register('todo', ToDoViewSet)
 
@@ -53,13 +55,15 @@ urlpatterns = [
     path('api-auth/', include("rest_framework.urls")),
     path('api/', include(router.urls)),
     path('api-token-auth/', views.obtain_auth_token),
-    path('api/users/0.1/', include(users.urls, namespace='0.1')),
-    path('api/users/0.2/', include(users.urls, namespace='0.2')),
+    # path('api/users/0.1/', include(users.urls, namespace='0.1')),
+    # path('api/users/0.2/', include(users.urls, namespace='0.2')),
     # path('api/v<int:version>/', include(router.urls)),
     # path('api/v<int:version>/users/', UserViewSet.as_view({'get': 'list'})),
 
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
+    path("graphql/", GraphQLView.as_view(graphiql=True)),
 
 ]
