@@ -4,14 +4,14 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import status, permissions
 from .models import ToDo
-from .serializers import ToDoSerializer
+from .serializers import ToDoSerializer, AddToDoSerializer
 
 
 # Create your views here.
 
 class ToDoViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
-    serializer_class = ToDoSerializer
+    # serializer_class = ToDoSerializer
     # permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['project', 'status']
@@ -21,6 +21,7 @@ class ToDoViewSet(ModelViewSet):
         todo_obj.status = 'D'
         todo_obj.save()
         return Response(status=status.HTTP_200_OK)
+
 
 
 
